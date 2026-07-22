@@ -1,11 +1,9 @@
-import Card from './Card.jsx'
+import Modules from "./components/Modules";
 
 function App() {
   return (
     <>
-      <Card></Card>
-      <Card></Card>
-      <Card></Card>
+      <Modules></Modules>
     </>
   );
 }
