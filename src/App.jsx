@@ -1,10 +1,10 @@
-import Modules from "./components/Modules";
+import Login from './components/Login/Login.jsx'
 
 function App() {
   return (
-    <>
-      <Modules></Modules>
-    </>
+    <div>
+      <Login></Login>
+    </div>
   );
 }
 
