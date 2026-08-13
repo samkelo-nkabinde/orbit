@@ -7,7 +7,7 @@ function Login() {
         <div className={styles.container}>
             <div className={styles.header}>
                 <div className={styles.text}>
-                    Login
+                    Welcome back!
                 </div>
 
                 <div className={styles.underline}>
@@ -18,16 +18,16 @@ function Login() {
             <div className={styles.inputs}>
                 <div className={styles.input}>
                     <img src={email_icon} alt="Email ICON" />
-                    <input type="email"/>
+                    <input type="email" placeholder="email address"/>
                 </div>
 
                 <div className={styles.input}>
                     <img src={password_icon} alt="Password ICON" />
-                    <input type="password"/>
+                    <input type="password" placeholder="password"/>
                 </div>
 
-                <div className={styles.login-container}>
-                    <div className={styles.Login}>
+                <div className={styles.loginContainer}>
+                    <div className={styles.login}>
                         Login
                     </div>
                 </div>
