@@ -1,13 +1,15 @@
 import styles from './Login.module.css';
 import email_icon from '../../assets/email.png'
 import password_icon from '../../assets/password.png'
+import { useState } from 'react';
 
 function Login() {
+
     return(
         <div className={styles.container}>
             <div className={styles.header}>
                 <div className={styles.text}>
-                    Welcome back!
+                    Welcome Back!
                 </div>
 
                 <div className={styles.underline}>
@@ -30,6 +32,7 @@ function Login() {
                     <div className={styles.login}>
                         Login
                     </div>
+                
                 </div>
             </div>
 
