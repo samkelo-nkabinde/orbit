@@ -23,9 +23,17 @@ function Login() {
                     <input type="email" placeholder="email address"/>
                 </div>
 
+                <div className={styles.error} >
+                    <span>Invalid email format</span>
+                </div>
+
                 <div className={styles.input}>
                     <img src={password_icon} alt="Password ICON" />
                     <input type="password" placeholder="password"/>
+                </div>
+
+                <div className={styles.error} >
+                    <span>Incorrect password or email</span>
                 </div>
 
                 <div className={styles.loginContainer}>
