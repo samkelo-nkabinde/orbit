@@ -5,6 +5,7 @@ import { useState } from 'react';
 
 
 function Login() {
+    //const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -20,6 +21,7 @@ function Login() {
             setEmailError(true);
             return;
         }
+
 
         if (password !== "password123") {
             setPasswordError(true);
