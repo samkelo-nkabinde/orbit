@@ -3,7 +3,7 @@ import email_icon from '../../assets/email.png'
 import password_icon from '../../assets/password.png'
 import { useState } from 'react';
 import { isValidEmail } from '../../utils/validation';
-
+import { isValidUser } from '../../data/loginData';
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -18,15 +18,21 @@ function Login() {
         setEmailError(false);
         setPasswordError(false);
 
+        // if email is not valid 
         if (!isValidEmail(email)) {
             setEmailError(true);
             return;
         }
 
-        if (password !== "password123") {
+        // if user is not registered
+        let user = isValidUser(email, password);
+        if(!user){
             setPasswordError(true);
-            return;
+            return
         }
+
+        
+
     }
 
     return(
