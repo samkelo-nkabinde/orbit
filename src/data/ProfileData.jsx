@@ -150,7 +150,7 @@ const profiles = [
     {
         firstName: "Helen",
         lastName: "Zille",
-        email: "25118944sun.ac.za",
+        email: "25118944@sun.ac.za",
         password: "password005",
         birthDay: "2007-08-07",
         interest: "Data analyst",

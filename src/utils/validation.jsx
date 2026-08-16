@@ -34,7 +34,7 @@ export function isValidEmail(email){
 
     // Set of allowed characters 
     const localAllowedChars = new Set(['.', '_', '-', '+']); // charaters allowed bofore @
-    const domainAlloedChars = new Set(['.', '-', '@']);  // charaters allowed after @
+    const domainAllowedChars = new Set(['.', '-', '@']);  // charaters allowed after @
 
     // have passed @ 
     let seenAtchar = 0;
@@ -64,7 +64,7 @@ export function isValidEmail(email){
 
         // check if the charater is allowed in the domain
         if(seenAtchar && !isAlphaNumeric(trimmedEmail[i]) ){
-            if(!domainAlloedChars.has(trimmedEmail[i])){
+            if(!domainAllowedChars.has(trimmedEmail[i])){
                 console.log("Domain has a charater not allowed " + trimmedEmail[i]);
                 return false;
             }
