@@ -1,9 +1,9 @@
 import Login from './components/Login/Login.jsx'
-
+import Profile from './components/Profile/Profile.jsx'
 function App() {
   return (
     <div>
-      <Login></Login>
+      <Profile></Profile>
     </div>
   );
 }
