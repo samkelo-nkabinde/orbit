@@ -5,7 +5,7 @@ const TAGS = [
     "Important"
 ];
 
-const announcements = [
+export const announcements = [
     {
         announcementID: 'a1',
         tags: [TAGS[0]],
