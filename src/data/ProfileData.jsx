@@ -45,7 +45,7 @@ const profiles = [
             {
                 questionID: 'Q5',
                 question: questions[4],
-                answer: "Leetcode from the getgo!"
+                answer: "I'll do Leetcode from the getgo!"
             }
         ]
     },
