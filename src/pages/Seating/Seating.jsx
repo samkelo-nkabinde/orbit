@@ -50,11 +50,24 @@ function Seating() {
       if (seat.reservedByEmail === currentUser.email) {
         return { ...seat, reservedByEmail: null };
       }
-      // Assign new seat
+      // Assign new seat with a fresh object reference
       if (seat.seatNumber === seatNumber) {
         return { ...seat, reservedByEmail: currentUser.email };
       }
-      return seat;
+      return { ...seat };  
+    });
+
+    setSeats(updatedSeats);
+    localStorage.setItem('labSeats', JSON.stringify(updatedSeats));
+    setSelectedSeat(null);
+  }
+
+  function handleRelinquish(seatNumber) {
+    const updatedSeats = seats.map(seat => {
+      if (seat.seatNumber === seatNumber) {
+        return { ...seat, reservedByEmail: null };
+      }
+      return { ...seat };
     });
 
     setSeats(updatedSeats);

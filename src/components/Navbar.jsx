@@ -14,7 +14,7 @@ function Navbar() {
   return (
     <nav className={styles.navbar}>
       <div className={styles.brand}>
-        CS Honours Lab
+        Orbit
       </div>
       
       <div className={styles.navLinks}>
