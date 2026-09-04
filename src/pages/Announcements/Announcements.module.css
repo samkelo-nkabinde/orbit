@@ -114,25 +114,24 @@
     margin-top: 50px;
 }
 
-/* Message Bubbles */
+
 .messageBubble {
     display: flex;
     gap: 15px;
     padding: 15px;
     border-radius: 8px;
-    max-width: 85%;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .messageOther {
     background: white;
     border: 1px solid #eaeaea;
-    align-self: flex-start;
 }
 
 .messageMine {
     background: #f0f4f8;
     border: 1px solid #d0dfed;
-    align-self: flex-end;
 }
 
 .msgAvatar {
@@ -163,7 +162,7 @@
 }
 
 .msgYouBadge {
-    background: #5f213a;
+    background: darkblue; 
     color: white;
     font-size: 10px;
     font-weight: 700;
@@ -234,7 +233,7 @@
 }
 
 .selectTagActive {
-    background: #5f213a;
+    background: darkblue; 
     color: white;
 }
 

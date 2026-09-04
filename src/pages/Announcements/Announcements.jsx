@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './Announcements.module.css';
-import { getProfile } from '../../data/ProfileData';
+import { getProfileByName } from '../../data/ProfileData';
 import { announcements as initialAnnouncements, TAGS as AVAILABLE_TAGS } from '../../data/AnnouncementData';
 
 function Announcements() {
@@ -18,7 +18,7 @@ function Announcements() {
     if (savedUser) {
       setCurrentUser(JSON.parse(savedUser));
     }
-    localStorage.removeItem('labAnnouncements');
+   
     const savedAnnouncements = localStorage.getItem('labAnnouncements');
     if (savedAnnouncements) {
       setAnnouncements(JSON.parse(savedAnnouncements));
@@ -28,7 +28,6 @@ function Announcements() {
     }
   }, []);
 
-  
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -39,7 +38,7 @@ function Announcements() {
 
   if (!currentUser) return;
 
-  // Filter and sort announcements (older above newer)
+  // Filter and sort announcements 
   const filteredAnnouncements = announcements.filter(ann => {
     if (activeFilterTag === 'ALL') return true;
     return ann.tags.includes(activeFilterTag);
@@ -65,7 +64,7 @@ function Announcements() {
 
     const newAnnouncement = {
       id: Date.now().toString(),
-      authorName: currentUser.firstName,
+      authorName: currentUser.firstName, 
       content: messageContent.trim(),
       timestamp: new Date().toISOString(),
       tags: selectedNewTags
@@ -96,7 +95,7 @@ function Announcements() {
         <div className={styles.underline}></div>
       </div>
 
-      {/* Filter Bar (Bonus Feature) */}
+      {/* Filter Bar */}
       <div className={styles.filterBar}>
         <span className={styles.filterLabel}>Filter by Tag:</span>
         <div className={styles.tagList}>
@@ -131,20 +130,24 @@ function Announcements() {
             <div className={styles.emptyState}>No announcements found for this tag.</div>
           ) : (
             sortedAnnouncements.map((ann) => {
-              const authorProfile = getProfile(ann.authorEmail, null);
-              const isMe = ann.authorEmail === currentUser.email;
+              const isMe = ann.authorName === currentUser.firstName;
+              
+              const authorProfile = getProfileByName(ann.authorName);
 
               return (
                 <div key={ann.id} className={`${styles.messageBubble} ${isMe ? styles.messageMine : styles.messageOther}`}>
+                  
                   <img
                     src={authorProfile?.avatar || ''}
                     alt="avatar"
                     className={styles.msgAvatar}
                   />
+                  
                   <div className={styles.msgContent}>
                     <div className={styles.msgHeader}>
+                      {/* 3. Display the authorName directly */}
                       <span className={styles.msgName}>
-                        {authorProfile ? `${authorProfile.firstName} ${authorProfile.lastName}` : ann.authorEmail}
+                        {ann.authorName}
                       </span>
                       {isMe && <span className={styles.msgYouBadge}>You</span>}
                       <span className={styles.msgTime}>{formatTimestamp(ann.timestamp)}</span>
