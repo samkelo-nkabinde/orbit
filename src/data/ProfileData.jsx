@@ -203,3 +203,7 @@ export function getProfile(email, password){
                    profile.password === password
     );
 }
+
+export function getProfileByName(firstName) {
+    return profiles.find(profile => profile.firstName === firstName);
+}
