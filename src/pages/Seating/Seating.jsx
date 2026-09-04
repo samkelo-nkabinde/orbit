@@ -1,0 +1,190 @@
+import React, { useState, useEffect } from 'react';
+import styles from './Seating.module.css';
+import { getProfile } from '../../data/ProfileData'; 
+
+function SeatingPage() {
+  const [currentUser, setCurrentUser] = useState(null);
+  const [seats, setSeats] = useState([]);
+  const [selectedSeat, setSelectedSeat] = useState(null);
+
+  // Load user and seats on mount
+  useEffect(() => {
+    const savedUser = localStorage.getItem('currentUser');
+    if (savedUser) {
+      setCurrentUser(JSON.parse(savedUser));
+    }
+
+    const savedSeats = localStorage.getItem('labSeats');
+    if (savedSeats) {
+      setSeats(JSON.parse(savedSeats));
+    } else {
+      // Initialize 70 empty seats (7 rows x 10 columns) if none exist
+      const initialSeats = Array.from({ length: 70 }, (_, i) => ({
+        seatNumber: i + 1,
+        reservedByEmail: null
+      }));
+      setSeats(initialSeats);
+      localStorage.setItem('labSeats', JSON.stringify(initialSeats));
+    }
+  }, []);
+
+  if (!currentUser) return;
+
+  // Find if current user has a seat
+  const userSeat = seats.find(s => s.reservedByEmail === currentUser.email);
+  
+  const reservedCount = seats.filter(s => s.reservedByEmail !== null).length;
+  const availableCount = 70 - reservedCount;
+
+  function handleSeatClick(seat) {
+    if (selectedSeat?.seatNumber === seat.seatNumber) {
+      setSelectedSeat(null);
+    } else {
+      setSelectedSeat(seat);
+    }
+  }
+
+  function handleReserve(seatNumber) {
+    const updatedSeats = seats.map(seat => {
+      // Remove user's previous reservation if they had one
+      if (seat.reservedByEmail === currentUser.email) {
+        return { ...seat, reservedByEmail: null };
+      }
+      // Assign new seat
+      if (seat.seatNumber === seatNumber) {
+        return { ...seat, reservedByEmail: currentUser.email };
+      }
+      return seat;
+    });
+
+    setSeats(updatedSeats);
+    localStorage.setItem('labSeats', JSON.stringify(updatedSeats));
+    setSelectedSeat(null);
+  }
+
+  function handleRelinquish(seatNumber) {
+    const updatedSeats = seats.map(seat => {
+      if (seat.seatNumber === seatNumber) {
+        return { ...seat, reservedByEmail: null };
+      }
+      return seat;
+    });
+
+    setSeats(updatedSeats);
+    localStorage.setItem('labSeats', JSON.stringify(updatedSeats));
+    setSelectedSeat(null);
+  }
+
+  return (
+    <div className={styles.container}>
+      
+      {/* Header */}
+      <div className={styles.header}>
+        <h1 className={styles.text}>Lab Seating</h1>
+        <div className={styles.underline}></div>
+        <p className={styles.subtitle}>
+          7 x 10 Grid (70 Workstations). Maximum 1 seat reservation per student.
+        </p>
+      </div>
+
+      {/* Stats and Legend */}
+      <div className={styles.statsBar}>
+        <div className={styles.legend}>
+          <div className={styles.legendItem}>
+            <span className={`${styles.legendBox} ${styles.boxAvailable}`}></span>
+            <span>Available ({availableCount})</span>
+          </div>
+          <div className={styles.legendItem}>
+            <span className={`${styles.legendBox} ${styles.boxMine}`}></span>
+            <span>Your Seat ({userSeat ? 1 : 0})</span>
+          </div>
+          <div className={styles.legendItem}>
+            <span className={`${styles.legendBox} ${styles.boxOther}`}></span>
+            <span>Reserved ({reservedCount - (userSeat ? 1 : 0)})</span>
+          </div>
+        </div>
+        
+        <div className={styles.userStatus}>
+          Your Workstation: 
+          <span className={styles.statusHighlight}>
+            {userSeat ? ` Seat #${userSeat.seatNumber}` : " None"}
+          </span>
+        </div>
+      </div>
+
+      {/* Grid Container */}
+      <div className={styles.gridWrapper}>
+        <div className={styles.boardIndicator}>[ Front Whiteboard & Door ]</div>
+        
+        <div className={styles.seatGrid}>
+          {seats.map((seat) => {
+            const isMine = seat.reservedByEmail === currentUser.email;
+            const isOccupied = seat.reservedByEmail !== null && !isMine;
+            const isSelected = selectedSeat?.seatNumber === seat.seatNumber;
+            
+            // Determine CSS class based on status
+            let seatClass = styles.seatAvailable;
+            if (isMine) seatClass = styles.seatMine;
+            else if (isOccupied) seatClass = styles.seatOther;
+
+            return (
+              <div key={seat.seatNumber} className={styles.seatContainer}>
+                <button
+                  className={`${styles.seat} ${seatClass} ${isSelected ? styles.seatSelected : ''}`}
+                  onClick={() => handleSeatClick(seat)}
+                >
+                  {seat.seatNumber}
+                </button>
+
+                {/* Floating Menu specific to this seat */}
+                {isSelected && (
+                  <div className={styles.floatingMenu}>
+                    <div className={styles.menuHeader}>Seat #{seat.seatNumber}</div>
+                    
+                    {!seat.reservedByEmail && (
+                      <div className={styles.menuBody}>
+                        <p className={styles.menuText}>This seat is available.</p>
+                        <button onClick={() => handleReserve(seat.seatNumber)} className={styles.btnPrimary}>
+                          Reserve Seat
+                        </button>
+                      </div>
+                    )}
+
+                    {isMine && (
+                      <div className={styles.menuBody}>
+                        <p className={styles.menuText}>You have reserved this seat.</p>
+                        <button onClick={() => handleRelinquish(seat.seatNumber)} className={styles.btnDanger}>
+                          Give Up Seat
+                        </button>
+                      </div>
+                    )}
+
+                    {isOccupied && (
+                      <div className={styles.menuBody}>
+                        <p className={styles.menuText}>Reserved by:</p>
+                        {/* Fetch user info on the fly using your data function */}
+                        <div className={styles.occupantProfile}>
+                           <span className={styles.occupantName}>
+                             {getProfile(seat.reservedByEmail, null)?.firstName || seat.reservedByEmail}
+                           </span>
+                           <span className={styles.occupantInterest}>
+                             {getProfile(seat.reservedByEmail, null)?.interest}
+                           </span>
+                        </div>
+                      </div>
+                    )}
+                    
+                    <button onClick={() => setSelectedSeat(null)} className={styles.btnClose}>Close</button>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+    </div>
+  );
+}
+
+export default Seating;
