@@ -2,6 +2,7 @@ import styles from './Login.module.css';
 import email_icon from '../../assets/email.png'
 import password_icon from '../../assets/password.png'
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; 
 import { isValidEmail } from '../../utils/validation';
 import { getProfile } from '../../data/ProfileData';
 
@@ -11,6 +12,8 @@ function Login() {
 
     const [emailError, setEmailError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
+
+    const navigate = useNavigate();
 
     function handleLogin(event) {
         event.preventDefault();
@@ -28,12 +31,13 @@ function Login() {
         let user = getProfile(email, password);
         if(user === undefined){
             setPasswordError(true);
-            return
+            return;
         }
 
-        //if user is valid then go to profile
-        
+        // if user is valid then go to profile
+        localStorage.setItem('currentUser', JSON.stringify(user));
 
+        navigate('/profile');
     }
 
     return(
@@ -98,4 +102,4 @@ function Login() {
     )
 }
 
-export default Login
+export default Login;

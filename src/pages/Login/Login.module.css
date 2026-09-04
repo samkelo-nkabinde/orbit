@@ -27,7 +27,7 @@
 .underline{
    width: 180px; 
    height: 3px;
-   background: #5f213a;
+   background: darkblue;
    border-radius: 9px;
 }
 
@@ -76,7 +76,7 @@
     width: 200px;
     height: 49px;
     color: white;
-    background: #5f213a;
+    background: darkblue;
     border-radius: 50px;
     font-size: 23px;
     font-weight: 700;
