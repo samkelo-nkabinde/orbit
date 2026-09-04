@@ -1,0 +1,70 @@
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: darkblue;
+    padding: 0 40px;
+    height: 70px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.brand {
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.navLinks {
+    display: flex;
+    gap: 15px;
+}
+
+.link {
+    color: #eaeaea;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 8px 20px;
+    border-radius: 50px;
+    transition: all 0.2s ease;
+}
+
+.link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+
+.active {
+    background: white;
+    color: darkblue;
+}
+
+.active:hover {
+    background: white;
+    color: darkblue;
+}
+
+.logoutBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    height: 40px;
+    color: white;
+    background: darkblue; 
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.logoutBtn:hover {
+    background: tomato;
+}

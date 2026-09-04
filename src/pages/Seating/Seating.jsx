@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import styles from './Seating.module.css';
 import { getProfile } from '../../data/ProfileData'; 
 
-function SeatingPage() {
+function Seating() {
   const [currentUser, setCurrentUser] = useState(null);
   const [seats, setSeats] = useState([]);
   const [selectedSeat, setSelectedSeat] = useState(null);
 
-  // Load user and seats on mount
+  // Load user and seats 
   useEffect(() => {
     const savedUser = localStorage.getItem('currentUser');
     if (savedUser) {
@@ -18,7 +18,7 @@ function SeatingPage() {
     if (savedSeats) {
       setSeats(JSON.parse(savedSeats));
     } else {
-      // Initialize 70 empty seats (7 rows x 10 columns) if none exist
+      // Initialize 70 empty seats 
       const initialSeats = Array.from({ length: 70 }, (_, i) => ({
         seatNumber: i + 1,
         reservedByEmail: null
@@ -82,9 +82,6 @@ function SeatingPage() {
       <div className={styles.header}>
         <h1 className={styles.text}>Lab Seating</h1>
         <div className={styles.underline}></div>
-        <p className={styles.subtitle}>
-          7 x 10 Grid (70 Workstations). Maximum 1 seat reservation per student.
-        </p>
       </div>
 
       {/* Stats and Legend */}
@@ -114,7 +111,6 @@ function SeatingPage() {
 
       {/* Grid Container */}
       <div className={styles.gridWrapper}>
-        <div className={styles.boardIndicator}>[ Front Whiteboard & Door ]</div>
         
         <div className={styles.seatGrid}>
           {seats.map((seat) => {
@@ -122,7 +118,7 @@ function SeatingPage() {
             const isOccupied = seat.reservedByEmail !== null && !isMine;
             const isSelected = selectedSeat?.seatNumber === seat.seatNumber;
             
-            // Determine CSS class based on status
+          
             let seatClass = styles.seatAvailable;
             if (isMine) seatClass = styles.seatMine;
             else if (isOccupied) seatClass = styles.seatOther;
@@ -162,7 +158,7 @@ function SeatingPage() {
                     {isOccupied && (
                       <div className={styles.menuBody}>
                         <p className={styles.menuText}>Reserved by:</p>
-                        {/* Fetch user info on the fly using your data function */}
+                        {/* Fetch user */}
                         <div className={styles.occupantProfile}>
                            <span className={styles.occupantName}>
                              {getProfile(seat.reservedByEmail, null)?.firstName || seat.reservedByEmail}

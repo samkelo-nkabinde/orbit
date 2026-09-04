@@ -51,7 +51,7 @@ const profiles = [
     },
     {
         firstName: "Thanos",
-        lastName: "Dione",
+        lastName: "",
         email: "29118944@sun.ac.za",
         password: "password002",
         birthDay: "2004-09-17",

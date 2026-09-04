@@ -68,7 +68,7 @@
     border-radius: 4px;
 }
 
-.boxAvailable { border: 2px solid darkblue; background: white; }
+.boxAvailable { background: white; }
 .boxMine { background: darkblue; }
 .boxOther { background: #b0b0b0; }
 

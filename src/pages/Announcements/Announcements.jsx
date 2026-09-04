@@ -1,13 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './Announcements.module.css';
 import { getProfile } from '../../data/ProfileData';
-
-const AVAILABLE_TAGS = [
-    "General",
-    "Help",
-    "Notice",
-    "Important"
-];
+import { announcements as initialAnnouncements, TAGS as AVAILABLE_TAGS } from '../../data/AnnouncementData';
 
 function Announcements() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -24,21 +18,13 @@ function Announcements() {
     if (savedUser) {
       setCurrentUser(JSON.parse(savedUser));
     }
-
+    localStorage.removeItem('labAnnouncements');
     const savedAnnouncements = localStorage.getItem('labAnnouncements');
     if (savedAnnouncements) {
       setAnnouncements(JSON.parse(savedAnnouncements));
     } else {
-      // Seed with an initial welcome message if empty
-      const initial = [{
-        id: '1',
-        authorEmail: '28118944@sun.ac.za', 
-        content: 'Welcome to the Honours Lab Global Feed! Feel free to ask questions or post updates here.',
-        timestamp: new Date().toISOString(),
-        tags: ['LabNotice', 'General']
-      }];
-      setAnnouncements(initial);
-      localStorage.setItem('labAnnouncements', JSON.stringify(initial));
+      setAnnouncements(initialAnnouncements);
+      localStorage.setItem('labAnnouncements', JSON.stringify(initialAnnouncements));
     }
   }, []);
 
@@ -79,7 +65,7 @@ function Announcements() {
 
     const newAnnouncement = {
       id: Date.now().toString(),
-      authorEmail: currentUser.email,
+      authorName: currentUser.firstName,
       content: messageContent.trim(),
       timestamp: new Date().toISOString(),
       tags: selectedNewTags
