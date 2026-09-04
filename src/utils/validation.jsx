@@ -17,10 +17,10 @@ function isAlphaNumeric(char) {
 export function isValidEmail(email){
     const trimmedEmail = email.trim();
     if(!trimmedEmail.includes('@')){
-        console.log('Email does not have @');
+        //console.log('Email does not have @');
         return false;
     }else if (trimmedEmail.includes(' ')){
-        console.log('Email has white space');
+        //console.log('Email has white space');
         return false;
     }
 
@@ -28,7 +28,7 @@ export function isValidEmail(email){
 
     // first charater must be alpha numeric
     if(!isAlphaNumeric(trimmedEmail[i])){
-        console.log('1st charater is not alpha-numeric ' + trimmedEmail[i]);
+        //console.log('1st charater is not alpha-numeric ' + trimmedEmail[i]);
         return false;
     }
 
@@ -50,14 +50,14 @@ export function isValidEmail(email){
 
         // check if trailing charaters are not both non-AlphaNumeric
         if(!isAlphaNumeric(trimmedEmail[i]) && !isAlphaNumeric(trimmedEmail[i + 1])){
-            console.log("Email has trailing charaters " + trimmedEmail[i] + ' ' + trimmedEmail[i+1]);
+            //console.log("Email has trailing charaters " + trimmedEmail[i] + ' ' + trimmedEmail[i+1]);
             return false;
         }
 
         // check if the charater is allowed in the local
         if(!seenAtchar && !isAlphaNumeric(trimmedEmail[i]) ){
             if(!localAllowedChars.has(trimmedEmail[i])){
-                console.log("Local has a charater not allowed " + trimmedEmail[i]);
+                //console.log("Local has a charater not allowed " + trimmedEmail[i]);
                 return false;
             }
         }
@@ -65,14 +65,14 @@ export function isValidEmail(email){
         // check if the charater is allowed in the domain
         if(seenAtchar && !isAlphaNumeric(trimmedEmail[i]) ){
             if(!domainAllowedChars.has(trimmedEmail[i])){
-                console.log("Domain has a charater not allowed " + trimmedEmail[i]);
+                //console.log("Domain has a charater not allowed " + trimmedEmail[i]);
                 return false;
             }
         }
 
         i += 1;
     }
-    console.log("email is valid");
+    //console.log("email is valid");
     return true;
 }
 
