@@ -25,7 +25,7 @@ const profiles = [
             {
                 questionID: 'Q1',
                 question: questions[0],
-                answer: "I rolled a dice. I do really want to further my studies, i fear being unemployed in this economy!"
+                answer: "I rolled a dice. Fear of being unemployed!"
             },
             {
                 questionID: 'Q2',
@@ -67,7 +67,7 @@ const profiles = [
             {
                 questionID: 'Q2',
                 question: questions[1],
-                answer: "A job"
+                answer: "All I can say is, knowledge has little value if it is never put to use."
             },
             {
                 questionID: 'Q3',
@@ -77,12 +77,13 @@ const profiles = [
             {
                 questionID: 'Q4',
                 question: questions[3],
-                answer: "I am open to anything, whatever puts food on the table!"
+                answer: "Writing. Which is funny because I already have a degree that people think makes me employable. \
+                        But writing would let me sit alone, stare at a screen, question every decision I've ever made, and call it a career."
             },
             {
                 questionID: 'Q5',
                 question: questions[4],
-                answer: "Leetcode from the getgo!"
+                answer: "I'd ask more questions. I'd stop being embarrassed when I didn't understand something!"
             }
         ]
     },
@@ -140,12 +141,16 @@ const profiles = [
             {
                 questionID: 'Q2',
                 question: questions[1],
-                answer: "A job"
+                answer: "A career, I guess.\
+                        Something where I can make money, do something meaningful, and not hate myself every morning.\
+                        So, you know, probably something completely different."
             },
             {
                 questionID: 'Q3',
                 question: questions[2],
-                answer: "No, education is too expensive!"
+                answer: "Maybe. I like learning. I just don't like the part where everyone expects you to know what you're doing with your life.\
+                    Maybe I'll do a master's. Maybe I'll get a job. Maybe I'll move to another country and pretend that solves everything. \
+                    That's usually how these things work, right?"
             },
             {
                 questionID: 'Q4',
