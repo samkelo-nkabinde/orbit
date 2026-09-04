@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Profile.module.css';
+import { useNavigate } from 'react-router-dom';
 
 function Profile() {
   // Initialize user from localStorage
@@ -7,17 +8,20 @@ function Profile() {
   const [editingQuestionId, setEditingQuestionId] = useState(null);
   const [tempAnswer, setTempAnswer] = useState('');
   const [deleteConfirmId, setDeleteConfirmId] = useState(null);
-
+  const navigate = useNavigate(); 
   // Load the user
   useEffect(() => {
     const savedUser = localStorage.getItem('currentUser');
     if (savedUser) {
       setCurrentUser(JSON.parse(savedUser));
+   } else {
+      // redirect to login!
+      navigate('/login', { replace: true });
     }
-  }, []);
+  }, [navigate]);
 
   // If no user is logged in, don't render the profile
-  if (!currentUser) return;
+  if (!currentUser) return null;
 
 
   const answeredCount = currentUser.answers.filter(a => a.answer !== null && a.answer.trim() !== '').length;

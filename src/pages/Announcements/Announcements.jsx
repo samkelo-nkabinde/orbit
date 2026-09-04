@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import styles from './Announcements.module.css';
 import { getProfileByName } from '../../data/ProfileData';
 import { announcements as initialAnnouncements, TAGS as AVAILABLE_TAGS } from '../../data/AnnouncementData';
+import { useNavigate } from 'react-router-dom';
 
 function Announcements() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -9,14 +10,19 @@ function Announcements() {
   const [messageContent, setMessageContent] = useState('');
   const [selectedNewTags, setSelectedNewTags] = useState(['General']);
   const [activeFilterTag, setActiveFilterTag] = useState('ALL');
-
+  
+  const navigate = useNavigate(); 
   const messagesEndRef = useRef(null);
 
-  // Load user and announcements 
+  // Load user and announcements with authentication guard
   useEffect(() => {
     const savedUser = localStorage.getItem('currentUser');
     if (savedUser) {
       setCurrentUser(JSON.parse(savedUser));
+    } else {
+      // Redirect to login if not authenticated
+      navigate('/login', { replace: true });
+      return;
     }
    
     const savedAnnouncements = localStorage.getItem('labAnnouncements');
@@ -26,7 +32,7 @@ function Announcements() {
       setAnnouncements(initialAnnouncements);
       localStorage.setItem('labAnnouncements', JSON.stringify(initialAnnouncements));
     }
-  }, []);
+  }, [navigate]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -36,7 +42,7 @@ function Announcements() {
     scrollToBottom();
   }, [announcements, activeFilterTag]);
 
-  if (!currentUser) return;
+  if (!currentUser) return null;
 
   // Filter and sort announcements 
   const filteredAnnouncements = announcements.filter(ann => {
@@ -131,7 +137,6 @@ function Announcements() {
           ) : (
             sortedAnnouncements.map((ann) => {
               const isMe = ann.authorName === currentUser.firstName;
-              
               const authorProfile = getProfileByName(ann.authorName);
 
               return (
@@ -145,7 +150,6 @@ function Announcements() {
                   
                   <div className={styles.msgContent}>
                     <div className={styles.msgHeader}>
-                      {/* 3. Display the authorName directly */}
                       <span className={styles.msgName}>
                         {ann.authorName}
                       </span>

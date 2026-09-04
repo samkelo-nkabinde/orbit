@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Seating.module.css';
 import { getProfile } from '../../data/ProfileData'; 
+import { useNavigate } from 'react-router-dom';
 
 function Seating() {
   const [currentUser, setCurrentUser] = useState(null);
   const [seats, setSeats] = useState([]);
   const [selectedSeat, setSelectedSeat] = useState(null);
+  const navigate = useNavigate();
 
-  // Load user and seats 
+  // Load user and seats with authentication guard
   useEffect(() => {
     const savedUser = localStorage.getItem('currentUser');
     if (savedUser) {
       setCurrentUser(JSON.parse(savedUser));
+    } else {
+      // Redirect to login if not authenticated
+      navigate('/login', { replace: true });
+      return;
     }
 
     const savedSeats = localStorage.getItem('labSeats');
@@ -26,9 +32,9 @@ function Seating() {
       setSeats(initialSeats);
       localStorage.setItem('labSeats', JSON.stringify(initialSeats));
     }
-  }, []);
+  }, [navigate]);
 
-  if (!currentUser) return;
+  if (!currentUser) return null;
 
   // Find if current user has a seat
   const userSeat = seats.find(s => s.reservedByEmail === currentUser.email);
@@ -68,19 +74,6 @@ function Seating() {
         return { ...seat, reservedByEmail: null };
       }
       return { ...seat };
-    });
-
-    setSeats(updatedSeats);
-    localStorage.setItem('labSeats', JSON.stringify(updatedSeats));
-    setSelectedSeat(null);
-  }
-
-  function handleRelinquish(seatNumber) {
-    const updatedSeats = seats.map(seat => {
-      if (seat.seatNumber === seatNumber) {
-        return { ...seat, reservedByEmail: null };
-      }
-      return seat;
     });
 
     setSeats(updatedSeats);

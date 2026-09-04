@@ -13,9 +13,7 @@ export const announcements = [
         tags: [TAGS[2], TAGS[3]], 
         timestamp: "2026-09-02T09:00:00Z",
         authorName: "Thanos", 
-        content: "Friendly reminder! Project 1 submissions are strictly due on 4 September at 17h00[cite: 1]. Please remember that late submissions are not allowed[cite: 1]."
-    },
-    {
+        content: "Friendly reminder! Project 1 submissions are strictly due on 4 September at 17h00.",
         id: 'a2',
         tags: [TAGS[1], TAGS[5]], 
         timestamp: "2026-09-03T14:30:00Z",

@@ -61,8 +61,9 @@ const profiles = [
             {
                 questionID: 'Q1',
                 question: questions[0],
-                answer: "I rolled a dice. I do really want to further my studies, i fear being unemployed in this economy!"
-            },
+                answer: "The universe is governed by systems, patterns, and rules. Computer science offered me a small way to understand them.\
+                        Honours was simply the next step. \
+                        Once you have seen how much there is to learn, stopping becomes difficult to justify."},
             {
                 questionID: 'Q2',
                 question: questions[1],
@@ -97,7 +98,7 @@ const profiles = [
             {
                 questionID: 'Q1',
                 question: questions[0],
-                answer: "I rolled a dice. I do really want to further my studies, i fear being unemployed in this economy!"
+                answer: "My late father won't let me have my billions without having a pHd in something, so I figured I might as well try this comSci thing!"
             },
             {
                 questionID: 'Q2',
@@ -133,8 +134,9 @@ const profiles = [
             {
                 questionID: 'Q1',
                 question: questions[0],
-                answer: "I rolled a dice. I do really want to further my studies, i fear being unemployed in this economy!"
-            },
+                answer: "I don't know. I guess I was good at it. People kept telling me I was smart, so eventually I figured I should do something that made me look smart. \
+                        Then I finished my degree and everyone was like, So what's next? \
+                        And I thought, I don't know, maybe honours. Maybe if I get another qualification, I'll finally feel like I'm doing something with my life."},
             {
                 questionID: 'Q2',
                 question: questions[1],
@@ -169,7 +171,7 @@ const profiles = [
             {
                 questionID: 'Q1',
                 question: questions[0],
-                answer: "I rolled a dice. I do really want to further my studies, i fear being unemployed in this economy!"
+                answer: "Computer science is quite honest, really. You give a machine a set of rules, and it follows them. Humans are much less predictable. I suppose I wanted to understand the difference.",
             },
             {
                 questionID: 'Q2',
