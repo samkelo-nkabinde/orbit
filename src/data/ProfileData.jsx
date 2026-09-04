@@ -1,3 +1,9 @@
+import shakaImg from '../assets/ShakaZulu.jpeg';
+import thanosImg from '../assets/thanos.jpeg';
+import batmanImg from '../assets/batman.jpg';
+import bojackImg from '../assets/bojack.jpg';
+import jokerImg from '../assets/joker.png';
+
 const questions = [
   "What caused you to study computer science and further continue into honours?",
   "What do you plan to pursue after you graduate?",
@@ -14,6 +20,7 @@ const profiles = [
         password: "password001",
         birthDay: "2003-08-07",
         interest: "Web development",
+        avatar: shakaImg,
         answers: [
             {
                 questionID: 'Q1',
@@ -43,12 +50,13 @@ const profiles = [
         ]
     },
     {
-        firstName: "Frederik",
-        lastName: "de Klerk",
+        firstName: "Thanos",
+        lastName: "Dione",
         email: "29118944@sun.ac.za",
         password: "password002",
         birthDay: "2004-09-17",
         interest: "IT and Network programming",
+        avatar: thanosImg,
         answers: [
             {
                 questionID: 'Q1',
@@ -78,12 +86,13 @@ const profiles = [
         ]
     },
     {
-        firstName: "Jacob",
-        lastName: "Zuma",
+        firstName: "Bruce",
+        lastName: "Wayne",
         email: "27118944@sun.ac.za",
         password: "password003",
         birthDay: "2004-08-07",
         interest: "ML and Distributed systems",
+        avatar: batmanImg,
         answers: [
             {
                 questionID: 'Q1',
@@ -113,12 +122,13 @@ const profiles = [
         ]
     },
     {
-        firstName: "Nelson",
-        lastName: "Mandela",
+        firstName: "BoJack",
+        lastName: "Horseman",
         email: "26118944@sun.ac.za",
         password: "password004",
         birthDay: "2001-08-07",
         interest: "Embedded systems",
+        avatar: bojackImg,
         answers: [
             {
                 questionID: 'Q1',
@@ -148,12 +158,13 @@ const profiles = [
         ]
     },
     {
-        firstName: "Helen",
-        lastName: "Zille",
+        firstName: "Arthur",
+        lastName: "Fleck",
         email: "25118944@sun.ac.za",
         password: "password005",
         birthDay: "2007-08-07",
         interest: "Data analyst",
+        avatar: jokerImg,
         answers: [
             {
                 questionID: 'Q1',

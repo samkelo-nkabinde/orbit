@@ -69,9 +69,17 @@ function Profile() {
       {/* User Profile Header Card */}
       <div className={styles.profileCard}>
         <div className={styles.profileInfoGroup}>
-          <div className={styles.avatar} style={{ backgroundColor: '#eaeaea', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '32px', color: '#797979' }}>
-            {currentUser.firstName[0]}
-          </div>
+          {currentUser.avatar ? (
+            <img 
+              src={currentUser.avatar} 
+              alt={`${currentUser.firstName} ${currentUser.lastName}`} 
+              className={styles.avatar} 
+            />
+          ) : (
+            <div className={styles.avatar} style={{ backgroundColor: '#eaeaea', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '32px', color: '#797979' }}>
+              {currentUser.firstName[0]}
+            </div>
+          )}
           
           <div className={styles.profileDetails}>
             <div className={styles.nameWrapper}>
