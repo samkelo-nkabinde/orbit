@@ -20,3 +20,9 @@ npm run dev
 # build
 npm run build
 ```
+
+## Declaration of Generative AI Use
+In accordance with the university's AI policy, Generative AI (Google Gemini) was utilized during the development of this project as a collaborative thought partner for:
+- Implementing and structuring the custom CSS modules and layouts for the Profile, Seating, and Announcements pages.
+- Debugging React state logic for handling immutable array updates and `localStorage` synchronization.
+- Organizing React Router routes and implementing authentication navigation guards.
