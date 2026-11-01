@@ -5,7 +5,7 @@ communicate with their peers.
 ## Features 
 - **Secure Login System**: Validates email formats and authenticates credentials against dummy accounts.
 - **Persistent Profile Page**: Displays personal details, avatars, and a question-and-answer section where users can answer, edit, and delete responses with changes saved via `localStorage`.
-- **Lab Seating Grid**: Has a 70 seats layout, allowing users to reserve a single seat, relinquish reservations, view peer profiles, and keep layout changes persistent[cite: 1].
+- **Lab Seating Grid**: Has a 70 seats layout, allowing users to reserve a single seat, relinquish reservations, view peer profiles, and keep layout changes persistent.
 - **Announcements & Chat Feed**: Global chronological feed featuring author details, avatars, timestamps, and an automated scroll behavior to show the newest message on load and upon sending.
 - **Announcement Tag System (Bonus)**: Filter announcements by specific tags or attach tags when publishing new messages.
 
@@ -21,8 +21,14 @@ npm run dev
 npm run build
 ```
 
+## Demo Accounts
+Use either of the following dummy accounts to log in and explore the site:
+
+| Name       | Email                | Password      |
+|------------|----------------------|---------------|
+| Thanos     | `29118944@sun.ac.za` | `password002` |
+| Shaka Zulu | `28118944@sun.ac.za` | `password001` |
+
 ## Declaration of Generative AI Use
 In accordance with the university's AI policy, Generative AI was utilized during the development of this project as a tool for:
 - Implementing and structuring the custom CSS modules and layouts for the Profile, Seating, and Announcements pages.
-- Debugging React state logic for handling immutable array updates and `localStorage` synchronization.
-- Organizing React Router routes and implementing authentication navigation guards.
